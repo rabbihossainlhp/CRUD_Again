@@ -23,11 +23,20 @@ const createProduct = async (req, res) => {
 
 
 const getProducts = async (req, res) => {
-    const products = await product.find({});
+    const limit = 10;
+    const skipData = (req.query.page - 1) * limit;
+
+    const products = await product.find({}).skip(skipData).limit(limit);
+    
+    console.log(req.query)
 
     res.status(200).json({
         message: "Got all products",
-        data: products
+        data: products,
+        paginaton:{
+            "currentPage":req.query.page,
+            "pageSize":limit
+        }
     })
 }
 
