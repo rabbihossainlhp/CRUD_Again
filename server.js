@@ -11,7 +11,7 @@ app.use("/api/v1",router)
 
 
 //dbbb_Connection
-dbConnection();
+dbConnection() ;
 
 
 const port = process.env.PORT || 4000
